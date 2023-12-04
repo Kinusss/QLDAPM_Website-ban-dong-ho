@@ -23,24 +23,29 @@ class HangSanXuatController extends Controller
 	}
 	public function postThem(Request $request)
 	{	
+		// Kiểm tra
 		$request->validate([
-			'tenhang' => ['required', 'max:255', 'unique:hangsanxuat'],
+			'tenhang' => ['required', 'string', 'max:191', 'unique:hangsanxuat'],
 			'hinhanh' => ['nullable', 'image', 'max:1024']
 		]);
 		
+		// Upload hình ảnh
 		$path = '';
 		if($request->hasFile('hinhanh'))
 		{
-		$extension = $request->file('hinhanh')->extension();
-		$filename = Str::slug($request->tenhang, '-') . '.' . $extension;
-		$path = Storage::putFileAs('hang-san-xuat', $request->file('hinhanh'), $filename);
+			$extension = $request->file('hinhanh')->extension();
+			$filename = Str::slug($request->tenhang, '-') . '.' . $extension;
+			$path = Storage::putFileAs('hang-san-xuat', $request->file('hinhanh'), $filename . '?' . time());
 		}
-
+		
+		// Thêm
 		$orm = new HangSanXuat();
 		$orm->tenhang = $request->tenhang;
 		$orm->tenhang_slug = Str::slug($request->tenhang, '-');
 		if(!empty($path)) $orm->hinhanh = $path;
 		$orm->save();
+		
+		// Sau khi thêm thành công thì tự động chuyển về trang danh sách
 		return redirect()->route('admin.hangsanxuat');
 	}
 	public function getSua($id)
@@ -51,7 +56,7 @@ class HangSanXuatController extends Controller
 	public function postSua(Request $request, $id)
 	{
 		$request->validate([
-			'tenhang' => ['required', 'max:255', 'unique:hangsanxuat,tenhang,'  . $id],
+			'tenhang' => ['required', 'string', 'max:191', 'unique:hangsanxuat,tenhang,' . $id],
 			'hinhanh' => ['nullable', 'image', 'max:1024']
 		]);
 		

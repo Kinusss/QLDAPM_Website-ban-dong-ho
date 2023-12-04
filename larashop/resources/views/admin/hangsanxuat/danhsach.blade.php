@@ -24,7 +24,7 @@
 					@foreach($hangsanxuat as $value)
 						<tr>
 							<td>{{ $loop->iteration }}</td>
-							<td class="text-center"><img src="{{ env('APP_URL') . '/storage/app/' . $value->hinhanh }}" width="100" class="img-thumbnail" /></td>
+							<td class="text-center"><img src="{{ env('APP_URL') . '/storage/app/' . $value->hinhanh . '?t=' . time() }}" width="100" class="img-thumbnail" /></td>
 							<td>{{ $value->tenhang }}</td>
 							<td>{{ $value->tenhang_slug }}</td>
 							<td class="text-center"><a href="{{ route('admin.hangsanxuat.sua', ['id' => $value->id]) }}"><i class="bi bi-pencil-square"></i></a></td>

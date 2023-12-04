@@ -9,11 +9,6 @@ use App\Models\TinhTrang;
 
 class DonHangController extends Controller
 {
-    public function __construct()
-	{
-		$this->middleware('auth');
-	}
-
 	public function getDanhSach()
 	{
 		$donhang = DonHang::orderBy('created_at', 'desc')->get();

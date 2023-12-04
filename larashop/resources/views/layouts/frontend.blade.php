@@ -54,37 +54,17 @@
 								<span class="navbar-tool-tooltip">Mở rộng menu</span>
 								<div class="navbar-tool-icon-box"><i class="navbar-tool-icon ci-menu"></i></div>
 							</a>
-							
-							<div class="dropdown ms-2">
-								<a class="navbar-tool" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-									<i class="navbar-tool-icon ci-user"></i>
-									<div class="navbar-tool-text ms-2">
-										<small>Xin chào</small>
-										@if (Auth::check())
-											{{ Auth::user()->name }}
-										@else
-											Khách hàng
-										@endif
-									</div>
+							@guest
+								<a class="navbar-tool ms-1 ms-lg-0 me-n1 me-lg-2" href="{{ route('user.dangnhap') }}">
+									<div class="navbar-tool-icon-box"><i class="navbar-tool-icon ci-user"></i></div>
+									<div class="navbar-tool-text ms-n3"><small>Xin chào</small>Khách hàng</div>
 								</a>
-
-								<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-									@if (Auth::check())
-										<a class="dropdown-item" href="{{ route('logout') }}"
-											onclick="event.preventDefault();
-											document.getElementById('logout-form').submit();">
-											Đăng xuất
-										</a>
-										<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-											@csrf
-										</form>
-									@else
-										<a class="dropdown-item" href="{{ route('user.dangnhap') }}">Đăng nhập</a>
-										<a class="dropdown-item" href="{{ route('register') }}">Đăng ký</a>
-									@endif
-								</div>
-							</div>
-
+							@else
+								<a class="navbar-tool ms-1 ms-lg-0 me-n1 me-lg-2" href="{{ route('user.home') }}">
+									<div class="navbar-tool-icon-box"><i class="navbar-tool-icon ci-user"></i></div>
+									<div class="navbar-tool-text ms-n3"><small>Xin chào</small>{{ Auth::user()->name }}</div>
+								</a>
+							@endguest
 							<div class="navbar-tool ms-3">
 								<a class="navbar-tool-icon-box bg-secondary" href="{{ route('frontend.giohang') }}">
 									<span class="navbar-tool-label">{{ Cart::count() ?? 0 }}</span><i class="navbar-tool-icon ci-cart"></i>
@@ -164,7 +144,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="pb-4 fs-xs text-light opacity-50 text-center text-md-start">Bản quyền © 2023 bởi Cartzilla.</div>
+				<div class="pb-4 fs-xs text-light opacity-50 text-center text-md-start">Bản quyền © 2023 bởi {{ config('app.name', 'Laravel') }}.</div>
 			</div>
 		</div>
 	</footer>

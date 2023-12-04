@@ -14,12 +14,7 @@ use App\Exports\SanPhamExport;
 use Excel;
 
 class SanPhamController extends Controller
-{
-    public function __construct()
-	{
-		$this->middleware('auth');
-	}
-	
+{	
 	public function getDanhSach()
 	{
 		$sanpham = SanPham::paginate(30);

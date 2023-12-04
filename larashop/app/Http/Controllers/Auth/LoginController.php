@@ -45,4 +45,17 @@ class LoginController extends Controller
         // Xử lý khi người dùng đăng nhập thành công
         return redirect()->intended($this->redirectPath());
     }
+	
+	public function username()
+	{
+		$identity = request()->get('email');
+		if(is_numeric($identity))
+			$fieldName = 'phone';
+		elseif(filter_var($identity, FILTER_VALIDATE_EMAIL))
+			$fieldName = 'email';
+		else
+			$fieldName = 'username';
+		request()->merge([$fieldName => $identity]);
+		return $fieldName;
+	}
 }

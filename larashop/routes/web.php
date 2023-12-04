@@ -19,6 +19,10 @@ Auth::routes();
 Route::get('/login/google', [HomeController::class, 'getGoogleLogin'])->name('google.login');
 Route::get('/login/google/callback', [HomeController::class, 'getGoogleCallback'])->name('google.callback');
 
+// Google OAuth
+Route::get('/login/facebook', [HomeController::class, 'getFacebookLogin'])->name('facebook.login');
+Route::get('/login/facebook/callback', [HomeController::class, 'getFacebookLoginCallback'])->name('facebook.callback');
+
 // Các trang dành cho khách chưa đăng nhập
 Route::name('frontend.')->group(function() {
 	// Trang chủ
@@ -50,7 +54,7 @@ Route::name('frontend.')->group(function() {
 	Route::get('/lien-he', [HomeController::class, 'getLienHe'])->name('lienhe');
 	
 	//Tìm kiếm
-	//Route::get('/tim-kiem/{tenloai_slug}/{tensanpham_slug}', [HomeController::class, 'getTimKiem'])->name('timkiem');
+	//Route::get('/tim-kiem/', [HomeController::class, 'getTimKiem'])->name('timkiem');
 });
 
 // Trang khách hàng

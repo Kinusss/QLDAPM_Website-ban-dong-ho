@@ -76,7 +76,7 @@
 									</h3>
 									<div class="accordion-collapse collapse show" id="productInfo" data-bs-parent="#productPanels">
 										<div class="accordion-body">
-											<p>{{ $sanpham->mota }}</p>
+											<p>{{ $sanpham->motasanpham }}</p>
 										</div>
 									</div>
 								</div>
@@ -113,7 +113,7 @@
 		<div class="row align-items-center py-md-3">
 			<div class="col-12 py-4">
 				<h2 class="h3 mb-4 pb-2">Giới thiệu chi tiết sản phẩm</h2>
-				<p class="text-muted pb-2" style="text-align:justify">{{ $sanpham->mota }}</p>
+				<p class="text-muted pb-2" style="text-align:justify">{{ $sanpham->motasanpham }}</p>
 			</div>
 		</div>
 	</div>

@@ -7,11 +7,6 @@ use Illuminate\Http\Request;
 
 class DonHangChiTietController extends Controller
 {
-    public function __construct()
-	{
-		$this->middleware('auth');
-	}
-	
 	public function getDanhSach()
 	{
 		$donhang_chitiet = DonHang_ChiTiet::all();

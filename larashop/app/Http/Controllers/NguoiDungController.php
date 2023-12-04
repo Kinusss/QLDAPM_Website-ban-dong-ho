@@ -8,12 +8,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
 class NguoiDungController extends Controller
-{
-	public function __construct()
-	{
-		$this->middleware('auth');
-	}
-	
+{	
 	public function getDanhSach()
 	{
 		$nguoidung = NguoiDung::all();
@@ -52,10 +47,10 @@ class NguoiDungController extends Controller
 	public function postSua(Request $request)
 	{
 		$request->validate([
-		'name' => ['required', 'string', 'max:100'],
-		'email' => ['required', 'string', 'email', 'max:255', 'unique:nguoidung,email,' . $request->id],
-		'role' => ['required'],
-		'password' => ['confirmed'],
+			'name' => ['required', 'string', 'max:100'],
+			'email' => ['required', 'string', 'email', 'max:255', 'unique:nguoidung,email,' . $request->id],
+			'role' => ['required'],
+			'password' => ['confirmed'],
 		]);
 		$orm = NguoiDung::find($request->id);
 		$orm->name = $request->name;

@@ -57,16 +57,71 @@ class HomeController extends Controller
 			return redirect()->route('user.home');
 		}
 	}
+	
+	public function getFacebookLogin()
+	{
+		return Socialite::driver('facebook')->redirect();
+	}
+	public function getFacebookCallback()
+	{
+		try
+		{
+			$user = Socialite::driver('facebook')
+				->setHttpClient(new \GuzzleHttp\Client(['verify' => false]))
+				->stateless()
+				->user();
+		}
+		catch(Exception $e)
+		{
+			return redirect()->route('user.dangnhap')->with('warning', 'Lỗi xác thực. Xin vui lòng thử lại!');
+		}
+		
+		$existingUser = NguoiDung::where('email', $user->email)->first();
+		if($existingUser)
+		{
+			// Nếu người dùng đã tồn tại thì đăng nhập
+			Auth::login($existingUser, true);
+			return redirect()->route('user.home');
+		}
+		else
+		{
+			// Nếu chưa tồn tại người dùng thì thêm mới
+			$newUser = NguoiDung::create([
+				'name' => $user->name,
+				'email' => $user->email,
+				'username' => Str::before($user->email, '@'),
+				'password' => Hash::make('larashop@2023'), // Gán mật khẩu tự do
+			]);
+			
+			// Sau đó đăng nhập
+			Auth::login($newUser, true);
+			return redirect()->route('user.home');
+		}
+		
+		$user = Socialite::driver('facebook')->user();
+
+		// Tìm kiếm hoặc tạo người dùng trong cơ sở dữ liệu
+		$authUser = User::where('facebook_id', $user->id)->first();
+
+		if (!$authUser) {
+			$authUser = User::create([
+				'name' => $user->name,
+				'email' => $user->email,
+				'facebook_id' => $user->id,
+				// Thêm các trường khác nếu cần thiết
+			]);
+		}
+
+		Auth::login($authUser, true);
+
+		return redirect('/home');
+	}
 
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct()
-    {
-        //$this->middleware('auth');
-    }
 
     /**
      * Show the application dashboard.
@@ -231,25 +286,16 @@ class HomeController extends Controller
 	}
 	
 	// Trang đăng ký dành cho khách hàng
-	public function postDangKy()
+	public function getDangKy()
 	{
 		$loaisanpham = LoaiSanPham::all();
 		return view('user.dangky', compact('loaisanpham'));
 	}
 	
 	// Trang đăng nhập dành cho khách hàng
-	public function getDangNhap(Request $request)
+	public function getDangNhap()
 	{
-		$loaisanpham = LoaiSanPham::all(); // Giữ lại biến $loaisanpham
-
-		$credentials = $request->only('email', 'password');
-
-		if (Auth::attempt($credentials)) {
-			// Đăng nhập thành công
-			return redirect()->route('user.home')->with('loaisanpham', $loaisanpham);
-		} else {
-			// Đăng nhập không thành công, hiển thị thông báo lỗi
-			return back()->withErrors(['email' => 'Đăng nhập không thành công. Vui lòng kiểm tra lại email và mật khẩu.'])->with('loaisanpham', $loaisanpham);
-		}
+		$loaisanpham = LoaiSanPham::all();
+		return view('user.dangnhap', compact('loaisanpham'));
 	}
 }

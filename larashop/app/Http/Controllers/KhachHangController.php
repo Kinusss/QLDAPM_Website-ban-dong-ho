@@ -11,13 +11,21 @@ use Illuminate\Support\Facades\Auth;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use App\Mail\DatHangEmail;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Hash;
 
 class KhachHangController extends Controller
 {
     public function getHome()
 	{
 		$loaisanpham = LoaiSanPham::all();
-		return view('user.home', compact('loaisanpham'));
+		if(Auth::check())
+		{
+			$nguoidung = NguoiDung::find(Auth::user()->id);
+			return view('user.home', compact('nguoidung', 'loaisanpham'));
+		}
+		else
+			return redirect()->route('user.dangnhap');
 	}
 	
 	public function getDatHang()
@@ -79,13 +87,27 @@ class KhachHangController extends Controller
 	
 	public function getHoSoCaNhan()
 	{
-		// Bổ sung code tại đây
-		return view('user.hosocanhan');
+		return redirect()->route('user.home');
 	}
 	
 	public function postHoSoCaNhan(Request $request)
 	{
-		return redirect()->route('user.home');
+		$id = Auth::user()->id;
+		
+		$request->validate([
+			'name' => ['required', 'string', 'max:100'],
+			'email' => ['required', 'string', 'email', 'max:255', 'unique:nguoidung,email,' . $id],
+			'password' => ['confirmed'],
+		]);
+		
+		$orm = NguoiDung::find($id);
+		$orm->name = $request->name;
+		$orm->username = Str::before($request->email, '@');
+		$orm->email = $request->email;
+		if(!empty($request->password)) $orm->password = Hash::make($request->password);
+		$orm->save();
+		
+		return redirect()->route('user.home')->with('success', 'Đã cập nhật thông tin thành công.');
 	}
 	
 	public function postDangXuat(Request $request)
