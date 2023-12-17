@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ChuDe;
+use App\Models\BaiViet;
 use App\Models\NguoiDung;
 use App\Models\SanPham;
 use App\Models\LoaiSanPham;
@@ -11,9 +13,6 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use Gloudemans\Shoppingcart\Facades\Cart;
-use App\Models\DonHang;
-use App\Models\DonHang_ChiTiet;
-
 use Socialite;
 
 class HomeController extends Controller
@@ -146,8 +145,6 @@ class HomeController extends Controller
 	
 	public function getSanPham_ChiTiet($tenloai_slug = '', $tensanpham_slug = '')
 	{
-		$loaisanpham = LoaiSanPham::all();
-    
 		$sanpham = SanPham::where('tensanpham_slug', $tensanpham_slug)
                     ->whereHas('loaisanpham', function ($query) use ($tenloai_slug) {
                         $query->where('tenloai_slug', $tenloai_slug);
@@ -158,32 +155,71 @@ class HomeController extends Controller
 			abort(404); // Trang không tồn tại nếu không tìm thấy sản phẩm
 		}
 
-		return view('frontend.sanpham_chitiet', compact('loaisanpham', 'sanpham'));
+		return view('frontend.sanpham_chitiet', compact('sanpham'));
 	}
 	
 	public function getBaiViet($tenchude_slug = '')
 	{
-		$loaisanpham = LoaiSanPham::all();
-		return view('frontend.baiviet', compact('loaisanpham'));
+		if(empty($tenchude_slug))
+		{
+			$title = 'Tin tức';
+			$baiviet = BaiViet::where('kichhoat', 1)
+				->where('kiemduyet', 1)
+				->orderBy('created_at', 'desc')
+				->paginate(20);
+		}
+		else
+		{
+			$chude = ChuDe::where('tenchude_slug', $tenchude_slug)
+				->firstOrFail();
+			$title = $chude->tenchude;
+			$baiviet = BaiViet::where('kichhoat', 1)
+				->where('kiemduyet', 1)
+				->where('chude_id', $chude->id)
+				->orderBy('created_at', 'desc')
+				->paginate(20);
+		}
+		return view('frontend.baiviet', compact('title', 'baiviet'));
 	}
 	
 	public function getBaiViet_ChiTiet($tenchude_slug = '', $tieude_slug = '')
 	{
-		$loaisanpham = LoaiSanPham::all();
-		return view('frontend.baiviet_chitiet', compact('loaisanpham'));
+		$tieude_id = explode('.', $tieude_slug);
+		$tieude = explode('-', $tieude_id[0]);
+		$baiviet_id = $tieude[count($tieude) - 1];
+		
+		$baiviet = BaiViet::where('kichhoat', 1)
+			->where('kiemduyet', 1)
+			->where('id', $baiviet_id)
+			->firstOrFail();
+		if(!$baiviet) abort(404);
+		// Cập nhật lượt xem
+		$daxem = 'BV' . $baiviet_id;
+		if(!session()->has($daxem))
+		{
+			$orm = BaiViet::find($baiviet_id);
+			$orm->luotxem = $baiviet->luotxem + 1;
+			$orm->save();
+			session()->put($daxem, 1);
+		}
+		$baivietcungchuyemuc = BaiViet::where('kichhoat', 1)
+			->where('kiemduyet', 1)
+			->where('chude_id', $baiviet->chude_id)
+			->where('id', '!=', $baiviet_id)
+			->orderBy('created_at', 'desc')
+			->take(4)->get();
+		return view('frontend.baiviet_chitiet', compact('baiviet', 'baivietcungchuyemuc'));
 	}
 	
 	public function getGioHang()
 	{
 		if(Cart::count() > 0)
 		{
-			$loaisanpham = LoaiSanPham::all();
-			return view('frontend.giohang', compact('loaisanpham'));
+			return view('frontend.giohang');
 		}
 		else
 		{
-			$loaisanpham = LoaiSanPham::all();
-			return view('frontend.giohangrong', compact('loaisanpham'));
+			return view('frontend.giohangrong');
 		}
 	}
 	
@@ -263,28 +299,25 @@ class HomeController extends Controller
 	
 	public function getTuyenDung()
 	{
-		$loaisanpham = LoaiSanPham::all();
-		return view('frontend.tuyendung', compact('loaisanpham'));
+		return view('frontend.tuyendung');
 	}
 	
 	public function getLienHe()
 	{
-		$loaisanpham = LoaiSanPham::all();
-		return view('frontend.lienhe', compact('loaisanpham'));
+		
+		return view('frontend.lienhe');
 	}
 	
 	// Trang đăng ký dành cho khách hàng
 	public function getDangKy()
 	{
-		$loaisanpham = LoaiSanPham::all();
-		return view('user.dangky', compact('loaisanpham'));
+		return view('user.dangky');
 	}
 	
 	// Trang đăng nhập dành cho khách hàng
 	public function getDangNhap()
 	{
-		$loaisanpham = LoaiSanPham::all();
-		return view('user.dangnhap', compact('loaisanpham'));
+		return view('user.dangnhap');
 	}
 	
 	public function getTimKiem(Request $request)

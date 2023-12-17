@@ -59,6 +59,17 @@ class NguoiDung extends Authenticatable
 	{
 		return $this->hasMany(DonHang::class, 'nguoidung_id', 'id');
 	}
+	
+	public function BaiViet(): HasMany
+	{
+		return $this->hasMany(BaiViet::class, 'nguoidung_id', 'id');
+	}
+
+	public function BinhLuanBaiViet(): HasMany
+	{
+		return $this->hasMany(BinhLuanBaiViet::class, 'nguoidung_id', 'id');
+	}
+	
 	public function sendPasswordResetNotification($token)
     {
         $this->notify(new CustomResetPasswordNotification($token));

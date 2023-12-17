@@ -13,7 +13,7 @@
     <link href="{{ asset('public/Admin/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ asset('public/Admin/css/master.css') }}" rel="stylesheet">
     <link href="{{ asset('public/Admin/vendor/flagiconcss/css/flag-icon.min.css') }}" rel="stylesheet">
-	@yield('javascript')
+	
 </head>
 
 <body>
@@ -40,6 +40,15 @@
                 </li>
 				<li>
                     <a href="{{ route('admin.donhang') }}"><i class="fas fa-money-bill-alt"></i> Đơn Hàng</a>
+                </li>
+				<li>
+                    <a href="{{ route('admin.chude') }}"><i class="fas fa-money-bill-alt"></i> Chủ đề</a>
+                </li>
+				<li>
+                    <a href="{{ route('admin.baiviet') }}"><i class="fas fa-money-bill-alt"></i> Bài viết</a>
+                </li>
+				<li>
+                    <a href="{{ route('admin.binhluanbaiviet') }}"><i class="fas fa-money-bill-alt"></i> Bình luận bài viết</a>
                 </li>
 				<li>
                     <a href="{{ route('admin.nguoidung') }}"><i class="fas fa-user-friends"></i> Tài Khoản</a>
@@ -82,6 +91,7 @@
     <script src="{{ asset('public/Admin/vendor/chartsjs/Chart.min.js') }}"></script>
     <script src="{{ asset('public/Admin/js/dashboard-charts.js') }}"></script>
     <script src="{{ asset('public/Admin/js/script.js') }}"></script>
+	@yield('javascript')
 </body>
 
 </html>

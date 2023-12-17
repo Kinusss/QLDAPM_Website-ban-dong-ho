@@ -3,198 +3,170 @@
 @section('title', 'Sản phẩm chi tiết')
 
 @section('content')
-	<!-- Page Title-->
-	<div class="page-title-overlap bg-dark pt-4">
-		<div class="container d-lg-flex justify-content-between py-2 py-lg-3">
-			<div class="order-lg-2 mb-3 mb-lg-0 pt-lg-2">
-				<nav aria-label="breadcrumb">
-					<ol class="breadcrumb breadcrumb-light flex-lg-nowrap justify-content-center justify-content-lg-start">
-						<li class="breadcrumb-item">
-							<a class="text-nowrap" href="#"><i class="ci-home"></i>Trang chủ</a>
-						</li>
-						<li class="breadcrumb-item text-nowrap">
-							<a href="#">Sản phẩm</a>
-						</li>
-						<li class="breadcrumb-item text-nowrap active" aria-current="page">{{ $sanpham->tensanpham }}</li>
-					</ol>
-				</nav>
-			</div>
-			<div class="order-lg-1 pe-lg-4 text-center text-lg-start">
-				<h1 class="h3 text-light mb-0">{{ $sanpham->tensanpham }}</h1>
-			</div>
-		</div>
-	</div>
-	<div class="container">
-		<div class="bg-light shadow-lg rounded-3 px-4 py-3 mb-5">
-			<div class="px-lg-3">
-				<div class="row">
-					<div class="col-lg-7 pe-lg-0 pt-lg-4">
-						<div class="product-gallery">
-							<div class="product-gallery-preview order-sm-2">
-								<div class="product-gallery-preview-item active" id="first">
-									<img class="image-zoom" src="{{ env('APP_URL') . '/storage/app/' . $sanpham->hinhanh }}" data-zoom="{{ env('APP_URL') . '/storage/app/' . $sanpham->hinhanh }}" width="300" />
-									<div class="image-zoom-pane"></div>
-								</div>
+	<nav aria-label="breadcrumb" class="w-100 float-left">
+  <ol class="breadcrumb parallax justify-content-center" data-source-url="img/banner/parallax.jpg" style="background-image: url(&quot;img/banner/parallax.jpg&quot;); background-position: 50% 0.809717%;">
+    <li class="breadcrumb-item"><a href="{{ route('frontend.home') }}">Trang chủ</a></li>
+    <li class="breadcrumb-item" href="#">Sản Phẩm</li>
+	<li class="breadcrumb-item active" aria-current="page">{{ $sanpham->tensanpham }}</li>
+  </ol>
+</nav>
+	<div class="product-deatils-section float-left w-100">
+		<div class="container">
+			<div class="row">
+				<div class="left-columm col-lg-5 col-md-5">
+					<div class="product-large-image tab-content">
+						<div class="tab-pane active" id="product-01" role="tabpanel" aria-labelledby="product-tab-01">
+							<div class="single-img img-full">
+								<a href="img/products/01.jpg"><img src="img/products/01.jpg" class="img-fluid zoomImg" alt=""></a>
 							</div>
 						</div>
 					</div>
-					<div class="col-lg-5 pt-4 pt-lg-0">
-						<div class="product-details ms-auto pb-3">
-							<div class="d-flex justify-content-between align-items-center mb-2">
-								<a href="#reviews" data-scroll>
-									<div class="star-rating">
-                                        @for ($i = 1; $i <= 5; $i++)
-                                            <i class="star-rating-icon ci-star-filled {{ $i <= $sanpham->rating ? 'active' : '' }}"></i>
-                                        @endfor
+				</div>
+				<div class="right-columm col-lg-7 col-md-7">
+					<div class="product-information">
+					<h4 class="product-title text-capitalize float-left w-100"><a href="product-details.html" class="float-left w-100">aliquam quaerat voluptatem</a></h4>
+					<div class="description">
+					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec quis viverra purus, non viverra nulla. Sed vehicula libero eu lectus eleifend volutpat. Sed et placerat arcu. Proin mi leo, interdum eu tortor at, euismod gravida velit. Fusce non enim lectus. Duis euismod, lorem vitae pharetra rhoncus, ligula risus elementum nunc, at interdum eros nunc eget augue. Donec dapibus nec diam ut tempor. Duis malesuada neque turpis, ut congue ipsum euismod eget. Sed egestas ipsum enim, sed semper magna auctor non. 
+					</div>
+					<div class="rating">
+											<div class="product-ratings d-inline-block align-middle">
+												<span class="fa fa-stack"><i class="material-icons">star</i></span>
+											   <span class="fa fa-stack"><i class="material-icons">star</i></span>
+											   <span class="fa fa-stack"><i class="material-icons">star</i></span>
+											   <span class="fa fa-stack"><i class="material-icons off">star</i></span>
+											   <span class="fa fa-stack"><i class="material-icons off">star</i></span>
+											</div>
+											<a href="#" class="review-down">(customer reviews)</a>
+												
+											</div>
+											<ul class="countdown countdown1 float-left w-100">
+										  <li><span class="days">00</span><p class="days_text">Days</p></li>
+										  <li><span class="hours">00</span><p class="hours_text">Hours</p></li>
+										  <li><span class="minutes">00</span><p class="minutes_text">Minutes</p></li>
+										  <li><span class="seconds">00</span><p class="seconds_text">Seconds</p></li>
+										</ul>
+																<div class="price float-left w-100 d-flex">
+												<div class="regular-price">$100.00</div>
+												<div class="old-price">$150.00</div>
+											</div>
+											<div class="product-variants float-left w-100">
+						<div class="col-md-3 col-sm-6 col-xs-12 size-options d-flex align-items-center">
+											<h5>Size:</h5>
+
+								<select class="form-control" name="select">
+											<option value="" selected="">Size</option>
+											<option value="black">Medium</option>
+											<option value="white">Large</option>
+											<option value="gold">Small</option>
+											<option value="rose gold">Extra large</option>
+								</select>
+						</div>
+						<div class="color-option d-flex align-items-center">
+                                        <h5>color :</h5>
+                                        <ul class="color-categories">
+                                            <li class="active">
+                                                <a class="tt-pink" href="#" title="Pink"></a>
+                                            </li>
+                                            <li>
+                                                <a class="tt-blue" href="#" title="Blue"></a>
+                                            </li>
+                                            <li>
+                                                <a class="tt-yellow" href="#" title="Yellow"></a>
+                                            </li>
+                                        </ul>
                                     </div>
-									<span class="d-inline-block fs-sm text-body align-middle mt-1 ms-1">{{ $sanpham->rating_count }} đánh giá</span>
-								</a>
+					</div>
+											<div class="btn-cart d-flex align-items-center float-left w-100"> 
+						<h5>qty:</h5>
+						<input value="1" type="number">
+						<button type="button" class="btn btn-primary btn-cart m-0" data-target="#cart-pop" data-toggle="modal"><i class="material-icons">shopping_cart</i> Add To Cart</button>
+					</div>
+					
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="product-tab-area float-left w-100">
+	<div class="container">
+					<div class="tabs">
+					<ul class="nav nav-tabs justify-content-start">
+						<li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#product-tab1" id="tab1"><div class="tab-title">Description</div></a></li>
+						<li class="nav-item"><a class="nav-link" data-toggle="tab" href="#product-tab2" id="tab2"><div class="tab-title">Reviews (2)</div></a></li>
+					</ul>
+				</div>
+					<div class="tab-content float-left w-100">
+					  <div class="tab-pane active" id="product-tab1" role="tabpanel" aria-labelledby="tab1">
+						  <div class="description">
+							Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec quis viverra purus, non viverra nulla. Sed vehicula libero eu lectus eleifend volutpat. Sed et placerat arcu. Proin mi leo, interdum eu tortor at, euismod gravida velit. Fusce non enim lectus. Duis euismod, lorem vitae pharetra rhoncus, ligula risus elementum nunc, at interdum eros nunc eget augue. Donec dapibus nec diam ut tempor. Duis malesuada neque turpis, ut congue ipsum euismod eget. Sed egestas ipsum enim, sed semper magna auctor non. Praesent risus nunc, ultricies vel velit nec, fringilla venenatis sem. Nunc condimentum, elit sed posuere accumsan, mauris nisl ornare metus, nec hendrerit quam velit ut nibh. Vivamus sodales neque vel sodales porta. Mauris hendrerit felis in mi auctor posuere. Mauris a consequat sapien, eget condimentum risus. Curabitur iaculis lorem non pretium varius. In hac habitasse platea dictumst.
+						  </div>
+					  </div>
+					  <div class="tab-pane" id="product-tab2" role="tabpanel" aria-labelledby="tab2">
+					  	<div class="reviews-tab  float-left w-100">
+							<div class="ttreview-tab float-left w-100 p-30">
+							  <h2>Customer Reviews</h2>
+							  <div class="rating float-left w-100">
+													<div class="product-ratings d-inline-block align-middle">
+														<span class="fa fa-stack"><i class="material-icons">star</i></span>
+													   <span class="fa fa-stack"><i class="material-icons">star</i></span>
+													   <span class="fa fa-stack"><i class="material-icons">star</i></span>
+													   <span class="fa fa-stack"><i class="material-icons off">star</i></span>
+													   <span class="fa fa-stack"><i class="material-icons off">star</i></span>
+													</div>
+													</div>
+							  <div class="review-title float-left w-100"><span class="user">admin</span> <span class="date">– February 14, 2019</span></div>
+							  <div class="review-desc  float-left w-100">Aliquam at ipsum tellus. Donec arcu est, posuere quis orci vel, commodo cursus augue. </div>
 							</div>
-							<div class="mb-3">
-								<span class="h3 fw-normal text-accent me-1">{{ number_format($sanpham->dongia, 0, ',', '.') }}<small>đ</small></span>
+							  <form action="#" class="rating-form float-left w-100">
+                                    <h5>Add your rating</h5>
+                                   <div class="rating">
+													<div class='rating-stars text-left'>
+    <ul id='stars'>
+      <li class='star' title='Poor' data-value='1'>
+   <i class="material-icons">star</i>
+      </li>
+      <li class='star' title='Fair' data-value='2'>
+   <i class="material-icons">star</i>
+      </li>
+      <li class='star' title='Good' data-value='3'>
+   <i class="material-icons">star</i>
+      </li>
+      <li class='star' title='Excellent' data-value='4'>
+   <i class="material-icons">star</i>
+      </li>
+      <li class='star' title='WOW!!!' data-value='5'>
+   <i class="material-icons">star</i>
+      </li>
+    </ul>
+  </div>
+   <div class='success-box'>
+    <div class='clearfix'></div>
+    <div class='text-message text-success'></div>
+    <div class='clearfix'></div>
+  </div>
+													</div>
+													<div class="row d-block">
+													
+													<div class="col-sm-6 float-left form-group">
+									 <label>Name <span class="required">*</span></label>
+                                    <input type="text" placeholder="" required="">
+									</div>
+									<div class="col-sm-6 float-left form-group">
+									 <label>Email <span class="required">*</span></label>
+                                    <input type="email" placeholder="" id="r-email" required>
+									</div>
+									<div class="col-sm-12 float-left form-group">
+									 <label for="r-textarea">Your Review</label>
+                                    <textarea name="review" id="r-textarea" cols="30" rows="10" class="w-100"></textarea>
+									</div>
+									</div>
+                                   <input type="submit" class="btn btn-primary submit" value="Submit Review">
+                                </form>
 							</div>
 							
-							<form class="mb-grid-gutter" method="post" action="{{ route('frontend.giohang.them', ['tensanpham_slug' => $sanpham->tensanpham_slug]) }}">
-								@csrf
-								<div class="mb-3 d-flex align-items-center">
-									<select class="form-select me-3" style="width:5rem;" name="quantity">
-										@for ($i = 1; $i <= 10; $i++)
-											<option value="{{ $i }}">{{ $i }}</option>
-										@endfor
-									</select>
-									<button class="btn btn-primary btn-shadow d-block w-100" type="submit">
-										<i class="ci-cart fs-lg me-2"></i>Thêm vào giỏ hàng
-									</button>
-								</div>
-							</form>
-							<div class="accordion mb-4" id="productPanels">
-								<div class="accordion-item">
-									<h3 class="accordion-header">
-										<a class="accordion-button" href="#productInfo" role="button" data-bs-toggle="collapse" aria-expanded="true" aria-controls="productInfo">
-											<i class="ci-announcement text-muted fs-lg align-middle mt-n1 me-2"></i>Thông tin cơ bản
-										</a>
-									</h3>
-									<div class="accordion-collapse collapse show" id="productInfo" data-bs-parent="#productPanels">
-										<div class="accordion-body">
-											<p>{{ $sanpham->motasanpham }}</p>
-										</div>
-									</div>
-								</div>
-								<div class="accordion-item">
-									<h3 class="accordion-header">
-										<a class="accordion-button collapsed" href="#shippingOptions" role="button" data-bs-toggle="collapse" aria-expanded="true" aria-controls="shippingOptions">
-											<i class="ci-settings text-muted lead align-middle mt-n1 me-2"></i>Thông số kỹ thuật
-										</a>
-									</h3>
-									<div class="accordion-collapse collapse" id="shippingOptions" data-bs-parent="#productPanels">
-										<div class="accordion-body">
-											<p></p>
-										</div>
-									</div>
-								</div>
-								<div class="accordion-item">
-									<h3 class="accordion-header">
-										<a class="accordion-button collapsed" href="#localStore" role="button" data-bs-toggle="collapse" aria-expanded="true" aria-controls="localStore">
-											<i class="ci-package text-muted fs-lg align-middle mt-n1 me-2"></i>Hình thức đóng gói
-										</a>
-									</h3>
-									<div class="accordion-collapse collapse" id="localStore" data-bs-parent="#productPanels">
-										<div class="accordion-body">
-											<p></p>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
 					</div>
-				</div>
-			</div>
-		</div>
-		<div class="row align-items-center py-md-3">
-			<div class="col-12 py-4">
-				<h2 class="h3 mb-4 pb-2">Giới thiệu chi tiết sản phẩm</h2>
-				<p class="text-muted pb-2" style="text-align:justify">{{ $sanpham->motasanpham }}</p>
-			</div>
-		</div>
 	</div>
-	<div class="border-top my-lg-3 py-5">
-		<div class="container pt-md-2" id="reviews">
-			<div class="row pb-3">
-				<div class="col-lg-4 col-md-5">
-					<h2 class="h3 mb-4">74 đánh giá</h2>
-					<div class="star-rating me-2">
-						<i class="ci-star-filled fs-sm text-accent me-1"></i>
-						<i class="ci-star-filled fs-sm text-accent me-1"></i>
-						<i class="ci-star-filled fs-sm text-accent me-1"></i>
-						<i class="ci-star-filled fs-sm text-accent me-1"></i>
-						<i class="ci-star fs-sm text-muted me-1"></i>
-					</div>
-					<span class="d-inline-block align-middle">4.1 điểm</span>
-					<p class="pt-3 fs-sm text-muted">58 trong tổng số 74 (77%)<br>Khách hàng đã đề nghị mua sản phẩm này.</p>
-				</div>
-				<div class="col-lg-8 col-md-7">
-					<div class="d-flex align-items-center mb-2">
-						<div class="text-nowrap me-3">
-							<span class="d-inline-block align-middle text-muted">5</span>
-							<i class="ci-star-filled fs-xs ms-1"></i>
-						</div>
-						<div class="w-100">
-							<div class="progress" style="height:4px;">
-								<div class="progress-bar bg-success" role="progressbar" style="width:60%;" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
-							</div>
-						</div>
-						<span class="text-muted ms-3">43</span>
-					</div>
-					<div class="d-flex align-items-center mb-2">
-						<div class="text-nowrap me-3">
-							<span class="d-inline-block align-middle text-muted">4</span>
-							<i class="ci-star-filled fs-xs ms-1"></i>
-						</div>
-						<div class="w-100">
-							<div class="progress" style="height:4px;">
-								<div class="progress-bar" role="progressbar" style="width:27%; background-color:#a7e453;" aria-valuenow="27" aria-valuemin="0" aria-valuemax="100"></div>
-							</div>
-						</div>
-						<span class="text-muted ms-3">16</span>
-					</div>
-					<div class="d-flex align-items-center mb-2">
-						<div class="text-nowrap me-3">
-							<span class="d-inline-block align-middle text-muted">3</span>
-							<i class="ci-star-filled fs-xs ms-1"></i>
-						</div>
-						<div class="w-100">
-							<div class="progress" style="height:4px;">
-								<div class="progress-bar" role="progressbar" style="width:17%; background-color:#ffda75;" aria-valuenow="17" aria-valuemin="0" aria-valuemax="100"></div>
-							</div>
-						</div>
-						<span class="text-muted ms-3">9</span>
-					</div>
-					<div class="d-flex align-items-center mb-2">
-						<div class="text-nowrap me-3">
-							<span class="d-inline-block align-middle text-muted">2</span>
-							<i class="ci-star-filled fs-xs ms-1"></i>
-						</div>
-						<div class="w-100">
-							<div class="progress" style="height:4px;">
-								<div class="progress-bar" role="progressbar" style="width:9%; background-color:#fea569;" aria-valuenow="9" aria-valuemin="0" aria-valuemax="100"></div>
-							</div>
-						</div>
-						<span class="text-muted ms-3">4</span>
-					</div>
-					<div class="d-flex align-items-center">
-						<div class="text-nowrap me-3">
-							<span class="d-inline-block align-middle text-muted">1</span>
-							<i class="ci-star-filled fs-xs ms-1"></i>
-						</div>
-						<div class="w-100">
-							<div class="progress" style="height: 4px;">
-								<div class="progress-bar bg-danger" role="progressbar" style="width:4%;" aria-valuenow="4" aria-valuemin="0" aria-valuemax="100"></div>
-							</div>
-						</div>
-						<span class="text-muted ms-3">2</span>
-					</div>
-				</div>
-			</div>
-		</div>
+	</div>
 	</div>
 @endsection

@@ -3,88 +3,263 @@
 @section('title', 'Trang chủ')
 
 @section('content')
-	<section class="container mt-4 mb-grid-gutter">
-		<div class="bg-faded-info rounded-3 py-4">
-			<div class="row align-items-center">
-				<div class="col-md-5">
-					<div class="px-4 pe-sm-0 ps-sm-5">
-						<span class="badge bg-danger">Khuyến mãi đặc biệt</span>
-						<h3 class="mt-4 mb-1 text-body fw-light">Sản phẩm mới 100%</h3>
-						<h2 class="mb-1">iPad Pro Bản Mới</h2>
-						<p class="h5 text-body fw-light">Số lượng sản phẩm có hạn!</p>
-						<a class="btn btn-accent" href="#">Xem chi tiết<i class="ci-arrow-right fs-ms ms-1"></i></a>
-					</div>
-				</div>
-				<div class="col-md-7"><img src="{{ asset('public/img/offer.jpg') }}" /></div>
-			</div>
-		</div>
-	</section>
-	
-	<section class="container">
-		<div class="tns-carousel border-end">
-			<div class="tns-carousel-inner" data-carousel-options="{ &quot;nav&quot;: false, &quot;controls&quot;: false, &quot;autoplay&quot;: true, &quot;autoplayTimeout&quot;: 4000, &quot;loop&quot;: true, &quot;responsive&quot;: {&quot;0&quot;:{&quot;items&quot;:1},&quot;360&quot;:{&quot;items&quot;:2},&quot;600&quot;:{&quot;items&quot;:3},&quot;991&quot;:{&quot;items&quot;:4},&quot;1200&quot;:{&quot;items&quot;:4}} }">
-				@foreach ($hangsanxuat as $hsx)
-					<div>
-						<a class="d-block bg-white border py-4 py-sm-5 px-2" href="#" style="margin-right:-.0625rem;">
-							<img class="d-block mx-auto" src="{{ env('APP_URL') . '/storage/app/' . $hsx->hinhanh }}" style="width:165px;" />
-						</a>
-					</div>
-				@endforeach
-			</div>
-		</div>
-	</section>
-	
-	
-	@foreach($loaisanpham as $lsp)
-		<section class="container pt-3 pb-2">
-			<div class="d-flex flex-wrap justify-content-between align-items-center pt-1 border-bottom pb-4 mb-4">
-				<h2 class="h3 mb-0 pt-3 me-2">{{ $lsp->tenloai }}</h2>
-				<div class="pt-3">
-					<a class="btn btn-outline-accent btn-sm" href="{{ route('frontend.sanpham.phanloai', ['tenloai_slug' => $lsp->tenloai_slug]) }}">
-						Xem tất cả<i class="ci-arrow-right ms-1 me-n1"></i>
-					</a>
+	<!-- Main jumbotron for a primary marketing message or call to action -->
+	  <div class="slider-wrapper my-40 my-sm-25 float-left w-100">
+		<div class="ttloading-bg"></div>
+	  	<div class="slider slider-for owl-carousel">
+			<div>
+				<a href="#">
+					<img src="{{ asset('public/Customer/img/slider/sample-07.png') }}" alt=""/>
+				</a>
+				<div class="slider-content-wrap center effect_top">
+				  <div class="slider-title mb-20 text-capitalize float-left w-100">our specials</div>
+				  <div class="slider-subtitle mb-50 text-capitalize float-left w-100">fashion trend</div>
+				  <div class="slider-button text-uppercase float-left w-100"><a href=" #">Shop Now</a></div>
 				</div>
 			</div>
-			<div class="row pt-2 mx-n2">
-				@foreach($lsp->SanPham->take(8) as $sp)
-					<div class="col-lg-3 col-md-4 col-sm-6 px-2 mb-4">
-						<div class="card product-card">
-							<a class="card-img-top d-block overflow-hidden" href="{{ route('frontend.sanpham.chitiet', ['tenloai_slug' => $lsp->tenloai_slug, 'tensanpham_slug' => $sp->tensanpham_slug]) }}">
-								<img src="{{ env('APP_URL') . '/storage/app/' . $sp->hinhanh }}" />
-							</a>
-							<div class="card-body py-2">
-								<a class="product-meta d-block fs-xs pb-1" href="#">{{ $lsp->tenloai }}</a>
-								<h3 class="product-title fs-sm">
-									<a href="{{ route('frontend.sanpham.chitiet', ['tenloai_slug' => $lsp->tenloai_slug, 'tensanpham_slug' => $sp->tensanpham_slug]) }}">{{ $sp->tensanpham }}</a>
-								</h3>
-								<div class="d-flex justify-content-between">
-									<div class="product-price">
-										<span class="text-accent">{{ number_format($sp->dongia, 0, ',', '.') }}<small>đ</small></span>
-									</div>
-									<div class="star-rating">
-										<i class="star-rating-icon ci-star-filled active"></i>
-										<i class="star-rating-icon ci-star-filled active"></i>
-										<i class="star-rating-icon ci-star-filled active"></i>
-										<i class="star-rating-icon ci-star-filled active"></i>
-										<i class="star-rating-icon ci-star"></i>
+			<div>
+				<a href="#">
+					<img src="{{ asset('public/Customer/img/slider/sample-08.png') }}" alt=""/>
+				</a>
+				<div class="slider-content-wrap center effect_bottom">
+				  <div class="slider-title mb-20 text-capitalize float-left w-100">about us</div>
+				  <div class="slider-subtitle mb-50 text-capitalize float-left w-100">fashion style</div>
+				  <div class="slider-button text-uppercase float-left w-100"><a href=" #">Shop Now</a></div>
+				</div>
+			</div>
+	  </div>
+	  </div>
+      
+			<div class="main-content">
+			<div id="category-products" class="category-products">
+			<div class="container">
+				<div class="inner-category owl-carousel">
+					<div class="ttproduct-cat-item">
+						<div class="tt_cat_content">
+							<div class="category-img left-block">
+								<a href="#" class="ttcategoy-image">
+									<img src="{{ asset('public/Customer/img/category/01.jpg') }}" alt="collection-img"/>
+								</a>
+							</div>
+							<div class="description right-block text-center">
+								<div class="title text-capitalize mb-10">women</div>
+								<div class="desc">Lorem Ipsum is simply dummy text</div>
+							</div>
+						</div>
+					</div>
+					<div class="ttproduct-cat-item">
+						<div class="tt_cat_content">
+							<div class="category-img left-block">
+								<a href="#" class="ttcategoy-image">
+									<img src="{{ asset('public/Customer/img/category/02.jpg') }}" alt="collection-img"/>
+								</a>
+							</div>
+							<div class="description right-block text-center">
+								<div class="title text-capitalize mb-10">men</div>
+								<div class="desc">Lorem Ipsum is simply dummy text</div>
+							</div>
+						</div>
+					</div>
+					<div class="ttproduct-cat-item">
+						<div class="tt_cat_content">
+							<div class="category-img left-block">
+								<a href="#" class="ttcategoy-image">
+									<img src="{{ asset('public/Customer/img/category/03.jpg') }}" alt="collection-img"/>
+								</a>
+							</div>
+							<div class="description right-block text-center">
+								<div class="title text-capitalize mb-10">kids</div>
+								<div class="desc">Lorem Ipsum is simply dummy text</div>
+							</div>
+						</div>
+					</div>
+					<div class="ttproduct-cat-item">
+						<div class="tt_cat_content">
+							<div class="category-img left-block">
+								<a href="#" class="ttcategoy-image">
+									<img src="{{ asset('public/Customer/img/category/04.jpg') }}" alt="collection-img"/>
+								</a>
+							</div>
+							<div class="description right-block text-center">
+								<div class="title text-capitalize mb-10">girls</div>
+								<div class="desc">Lorem Ipsum is simply dummy text</div>
+							</div>
+						</div>
+					</div>
+								<div class="ttproduct-cat-item">
+						<div class="tt_cat_content">
+							<div class="category-img left-block">
+								<a href="#" class="ttcategoy-image">
+									<img src="{{ asset('public/Customer/img/category/01.jpg') }}" alt="collection-img"/>
+								</a>
+							</div>
+							<div class="description right-block text-center">
+								<div class="title text-capitalize mb-10">fashion</div>
+								<div class="desc">Lorem Ipsum is simply dummy text</div>
+							</div>
+						</div>
+					</div>
+					
+				</div>
+			</div>
+			</div>
+          	
+			<div id="main"> 
+			<div id="hometab" class="home-tab my-40 my-sm-25 bottom-to-top hb-animate-element">
+			
+			
+			<div id="ttspecial" class="ttspecial my-40 bottom-to-top hb-animate-element">
+			<div class="container">
+					<div class="row">
+							<div class="tt-title d-inline-block float-none w-100 text-center">special products</div>
+							<div class="ttspecial-content products grid owl-carousel">
+							@foreach($sanpham as $sp)
+							<div class="product-layouts">
+								<div class="product-thumb">
+									<div class="image fade-hover">
+										<a href="#">
+											<img src="{{ env('APP_URL') . '/storage/app/' . $sp->hinhanh }}" alt="06"/>	
+										 </a>		
+										<div class="button-wrapper">								
+										<div class="button-group text-center">
+												<button type="button" class="btn btn-primary btn-cart" data-toggle="modal" data-target="#product_view"><i class="material-icons">shopping_cart</i><span>Add to cart</span></button>
+												<a href="wishlist.html" class="btn btn-primary btn-wishlist"><i class="material-icons">favorite</i><span>wishlist</span></a>
+												<button type="button" class="btn btn-primary btn-compare"><i class="material-icons">equalizer</i><span>Compare</span></button>
+												<button type="button" class="btn btn-primary btn-quickview"  data-toggle="modal" data-target="#product_view"><i class="material-icons">visibility</i><span>Quick View</span></button>
+											</div>
+												</div>		
+								  </div>
+									<div class="thumb-description">
+										<div class="caption">
+											<h4 class="product-title text-capitalize"><a href="product-details.html">{{ $sp->tensanpham }}</a></h4>
+										</div>
+										<div class="rating">
+											<div class="product-ratings d-inline-block align-middle">
+												<span class="fa fa-stack"><i class="material-icons">star</i></span>
+											   <span class="fa fa-stack"><i class="material-icons">star</i></span>
+											   <span class="fa fa-stack"><i class="material-icons">star</i></span>
+											   <span class="fa fa-stack"><i class="material-icons off">star</i></span>
+											   <span class="fa fa-stack"><i class="material-icons off">star</i></span>									
+											   </div>
+								      </div>
+										<div class="price">
+											<div class="regular-price">{{ number_format($sp->dongia, 0, ',', '.') }}<small>VNĐ</small></div>
+										</div>
 									</div>
 								</div>
 							</div>
-							<form method="post" action="{{ route('frontend.giohang.them', ['tensanpham_slug' => $sp->tensanpham_slug]) }}">
-							@csrf
-
-							<!-- Các trường và nút submit của bạn -->
-							<div class="card-body card-body-hidden">
-								<button type="submit" class="btn btn-primary btn-sm d-block w-100 mb-2">
-									<i class="ci-cart fs-sm me-1"></i>Thêm vào giỏ hàng
-								</button>
+							@endforeach
 							</div>
-							</form>
-						</div>
-						<hr class="d-sm-none">
 					</div>
-				@endforeach
 			</div>
-		</section>
-	@endforeach
+			</div>
+			
+			
+			<div id="ttsmartblog" class="my-40 my-sm-25 bottom-to-top hb-animate-element">
+				<div class="tt-title d-inline-block float-none w-100 text-center text-capitalize">latest news</div>
+				<div class="container">
+				<div class="row">
+				<div class="smartblog-content owl-carousel">
+					<div class="ttblog">
+					<div class="item">
+						<div class="ttblog_image_holder">
+							<a href="#">
+								<img src="{{ asset('public/Customer/img/banner/blog-01.jpg') }}" alt="blog-01">							</a>
+							<span class="blogicons">
+                                        <a title="Click to view Full Image" href="img/banner/blog-01.jpg" data-lightbox="example-set" class="icon zoom"><i class="material-icons">search</i></a></span></div>
+						<div class="blog-content-wrap float-left w-100">
+						<div class="blog_inner">
+							<h4 class="blog-title"><span>Share the Love</span></h4>
+							<div class="blog-desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
+							<div class="read-more text-capitalize">
+								<a title="Click to view Read More" class="readmore">read more</a>							</div>
+						</div>
+						</div>
+					</div>
+					</div>
+					<div class="ttblog">
+					<div class="item">
+						<div class="ttblog_image_holder">
+							<a href="#">
+								<img src="{{ asset('public/Customer/img/banner/blog-02.jpg') }}" alt="blog-02">							</a>
+								<span class="blogicons">
+                                        <a title="Click to view Full Image" href="img/banner/blog-02.jpg" data-lightbox="example-set" class="icon zoom"><i class="material-icons">search</i></a>							</span>					  </div>
+						<div class="blog-content-wrap float-left w-100">
+						<div class="blog_inner">
+							<h4 class="blog-title"><span>Upon of seasons earth</span></h4>
+							<div class="blog-desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
+							<div class="read-more text-capitalize">
+								<a title="Click to view Read More" class="readmore">read more</a>							</div>
+						</div>
+						</div>
+					</div>
+					</div>
+					<div class="ttblog">
+					<div class="item">
+						<div class="ttblog_image_holder">
+							<a href="#">
+								<img src="{{ asset('public/Customer/img/banner/blog-03.jpg') }}" alt="blog-03">							</a>
+																<span class="blogicons">
+                                        <a title="Click to view Full Image" href="img/banner/blog-03.jpg" data-lightbox="example-set" class="icon zoom"><i class="material-icons">search</i></a>							</span>					  </div>
+						<div class="blog-content-wrap float-left w-100">
+						<div class="blog_inner">
+							<h4 class="blog-title"><span>From Now we are certified web</span></h4>
+							<div class="blog-desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
+							<div class="read-more text-capitalize">
+								<a title="Click to view Read More" class="readmore">read more</a>							</div>
+						</div>
+						</div>
+					</div>
+					</div>
+					<div class="ttblog">
+					<div class="item">
+						<div class="ttblog_image_holder">
+							<a href="#">
+								<img src="{{ asset('public/Customer/img/banner/blog-04.jpg') }}" alt="blog-04">							</a>
+								<span class="blogicons">
+                                        <a title="Click to view Full Image" href="img/banner/blog-04.jpg" data-lightbox="example-set" class="icon zoom"><i class="material-icons">search</i></a>							</span>					  </div>
+						<div class="blog-content-wrap float-left w-100">
+						<div class="blog_inner">
+							<h4 class="blog-title"><span>Viderer voluptatum te eum</span></h4>
+							<div class="blog-desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
+							<div class="read-more text-capitalize">
+								<a title="Click to view Read More" class="readmore">read more</a>							</div>
+						</div>
+						</div>
+					</div>
+					</div>
+					<div class="ttblog">
+					<div class="item">
+						<div class="ttblog_image_holder">
+							<a href="#">
+								<img src="{{ asset('public/Customer/img/banner/blog-05.jpg') }}" alt="blog-05">							</a>
+								<span class="blogicons">
+                                        <a title="Click to view Full Image" href="img/banner/blog-05.jpg" data-lightbox="example-set" class="icon zoom"><i class="material-icons">search</i></a>							</span>					  </div>
+						<div class="blog-content-wrap float-left w-100">
+						<div class="blog_inner">
+							<h4 class="blog-title"><span>Share the Love</span></h4>
+							<div class="blog-desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
+							<div class="read-more text-capitalize">
+								<a title="Click to view Read More" class="readmore">read more</a>							</div>
+						</div>
+						</div>
+					</div>
+					</div>
+				</div>
+				</div>
+				</div>
+			</div>
+			<div id="ttbrandlogo" class="my-40 my-sm-25 bottom-to-top hb-animate-element">
+				<div class="container">
+					<div class="tt-brand owl-carousel">
+						@foreach ($hangsanxuat as $hsx)
+						<div class="item">
+							<a href="#"><img src="{{ env('APP_URL') . '/storage/app/' . $hsx->hinhanh }}" alt="brand-logo-01"></a>
+						</div>
+						@endforeach
+					</div>
+				</div>
+			</div>	
+		</div> 
+	</div>
 @endsection
