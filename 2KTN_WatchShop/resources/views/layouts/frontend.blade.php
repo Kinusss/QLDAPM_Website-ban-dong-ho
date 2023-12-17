@@ -116,8 +116,29 @@
 		</div>
 		</li>
 		<li class="nav-item dropdown">   
-		<a class="nav-link dropdown-toggle text-uppercase" href="{{ route('frontend.lienhe') }}">Liên Hệ</a>
-		
+		<a class="nav-link dropdown-toggle text-uppercase" href="category.html">Liên Hệ</a>
+		<div class="dropdown-menu mega-menu v-2 z-depth-1 special-color py-3 px-3">
+			<div class="sub-menu">
+			  <h6 class="sub-title text-uppercase font-weight-bold white-text d-none">Featured</h6>
+			<ul class="list-unstyled">
+				  <li>
+				  <a class="menu-item pl-0" href="blog-2-column.html">
+					blog 2 column                  </a>                </li>
+				<li>
+				  <a class="menu-item pl-0" href="blog-3-column.html">
+				   blog 3 column                  </a>                </li>
+				<li>
+				  <a class="menu-item pl-0" href="blog-2-column-masonary.html">
+				   blog masonary                 </a>                </li>
+				<li>
+				  <a class="menu-item pl-0" href="blog-list.html">
+					blog list                  </a>                </li>
+				<li>
+				  <a class="menu-item pl-0" href="blog-details.html">
+				   blog details                  </a>                </li>
+			  </ul>
+			</div>
+		</div>
 		</li>
 		</ul>
 		<!-- Links -->
@@ -226,56 +247,56 @@
       <div class="row">
         <div class="col-md-3 footer-cms footer-column">
 			<div class="ttcmsfooter">
-              <div class="footer-logo"><img src="{{ asset('public/Customer/img/logos/logoCus.png') }}" alt="footer-logo"></div>
-              <div class="footer-desc">Welcome to the watchs shop </div>
+              <div class="footer-logo"><img src="{{ asset('public/Customer/img/logos/footer-logo.png') }}" alt="footer-logo"></div>
+              <div class="footer-desc">At vero eos et accusamus et iusto odio dignissimos ducimus, duis faucibus enim vitae</div>
 			  </div>
 		</div>
         <div class="col-md-3 footer-column">
 		<div class="title">
-          <a href="#company" class="font-weight-normal text-capitalize mb-10" data-toggle="collapse" aria-expanded="false">CÔNG TY</a>		  </div>
+          <a href="#company" class="font-weight-normal text-capitalize mb-10" data-toggle="collapse" aria-expanded="false">company</a>		  </div>
           <ul id="company" class="list-unstyled collapse">
             <li>
-              <a href="#">Tìm kiếm</a>            </li>
+              <a href="#">search</a>            </li>
             <li>
-              <a href="#">Sản phẩm mới</a>            </li>
+              <a href="#">New Products</a>            </li>
             <li>
-              <a href="category.html">Bộ sưu tập nổi bật</a>            </li>
+              <a href="category.html">Best Collection</a>            </li>
             <li>
-              <a href="wishlist.html">Danh sách yêu thích</a>            </li>
+              <a href="wishlist.html">wishlist</a>            </li>
 			 <li>
-	 		 <a href="blog-details.html">Thông tin cá nhân</a>		    </li>         
+	 		 <a href="blog-details.html">personal info</a>		    </li>         
           </ul>
         </div>
         <div class="col-md-3 footer-column">
 			<div class="title">
-          <a href="#products" class="font-weight-normal text-capitalize mb-10" data-toggle="collapse" aria-expanded="false">Sản phẩm</a>		  </div>
+          <a href="#products" class="font-weight-normal text-capitalize mb-10" data-toggle="collapse" aria-expanded="false">products</a>		  </div>
           <ul id="products" class="list-unstyled collapse">
             <li>
-              <a href="blog-details.html">Tin tức</a>            </li>
+              <a href="blog-details.html">blog</a>            </li>
             <li>
-              <a href="about-us.html">Thông tin về chúng tôi</a>            </li>
+              <a href="about-us.html">about us</a>            </li>
             <li>
-              <a href="contact-us.html">Liên hệ</a>            </li>
+              <a href="contact-us.html">contact us</a>            </li>
             <li>
-              <a href="my-account.html">Tài khoản của tôi</a>            </li>
+              <a href="my-account.html">my account</a>            </li>
  <li>
-	  <a href="contact-us.html">Địa chỉ</a>            </li>         
+	  <a href="contact-us.html">addresses</a>            </li>         
           </ul>
 
         </div>
 		
         <div class="col-md-3 footer-column">
 		<div class="title">
-          <a href="#information" class="font-weight-normal text-capitalize mb-10" data-toggle="collapse" aria-expanded="false">Thông tin shop</a>		  </div>
+          <a href="#information" class="font-weight-normal text-capitalize mb-10" data-toggle="collapse" aria-expanded="false">store information</a>		  </div>
           <ul id="information" class="list-unstyled collapse">
             <li class="contact-detail links">
               <span class="address">
 			  		<span class="icon"><i class="material-icons">location_on</i></span>
-					<span class="data"> 69 Trần Hưng Đạo, Long Xuyên, An Giang</span>			  </span>            </li>
+					<span class="data"> 4030, Central Bazzar, opp. Varachha Police Station, Varachha Main Road, Surat, Gujarat 395006, India</span>			  </span>            </li>
             <li class="links">
                <span class="contact">
 			  		<span class="icon"><i class="material-icons">phone</i></span>
-					<span class="data"><a href="tel:(99)55669999">+84 0123 456 888</a></span>			  </span>            </li>
+					<span class="data"><a href="tel:(99)55669999">+ (99) 55-669-999</a></span>			  </span>            </li>
             <li class="links">
                <span class="email">
 			  		<span class="icon"><i class="material-icons">email</i></span>
